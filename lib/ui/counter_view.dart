@@ -27,32 +27,15 @@ class CounterView extends StatelessWidget {
               icon: Icon(Icons.exit_to_app)),
         ],
       ),
-      // body: Center(
-      //     child: Obx(() => Text(
-      //           "Clicks: ${c.count}",
-      //           style: TextStyle(fontSize: 25),
-      //         ))),
-
-      body: Obx(() {
-        // Affiche le spinner au centre de la page si isLoggingOut est true
-        if (controller.isLoading.value) {
-          return Center(child: CircularProgressIndicator());
-        }
-
-        // Sinon, affiche le compteur normalement
-        return Center(
-          child: Text(
-            "Clicks: ${c.count}",
-            style: TextStyle(fontSize: 25),
-          ),
-        );
-      }),
+      body: Center(
+          child: Obx(() => Text(
+                "Clicks: ${c.count}",
+                style: TextStyle(fontSize: 25),
+              ))),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: c.increment,
       ),
     );
-    floatingActionButton:
-    FloatingActionButton(child: Icon(Icons.add), onPressed: c.increment);
   }
 }

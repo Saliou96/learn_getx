@@ -33,10 +33,9 @@ class LoginController extends GetxController {
       if (user != null && !user.emailVerified) {
         // Si l'utilisateur n'a pas vérifié son email
         Get.snackbar(
-          "Email not verified",
-          "Please verify your email before logging in.",
-          snackPosition: SnackPosition.BOTTOM,
-        );
+            "Email not verified", "Please verify your email before logging in.",
+            snackPosition: SnackPosition.BOTTOM,
+            duration: Duration(seconds: 2));
 
         // Optionnel : Envoyer un lien de vérification à nouveau
         await user.sendEmailVerification();
@@ -45,12 +44,12 @@ class LoginController extends GetxController {
 
       // Si l'email est vérifié, redirige l'utilisateur vers CounterView
       Get.snackbar("Notification", "Login successful",
-          snackPosition: SnackPosition.BOTTOM);
+          duration: Duration(seconds: 2), snackPosition: SnackPosition.BOTTOM);
       Get.offAll(CounterView());
     } catch (e) {
       print("error $e");
       Get.snackbar("Login Error", e.toString(),
-          snackPosition: SnackPosition.BOTTOM);
+          duration: Duration(seconds: 2), snackPosition: SnackPosition.BOTTOM);
     } finally {
       // Définir isLoading sur false après la tentative de connexion
       isLoading.value = false;

@@ -29,7 +29,7 @@ class RegisterController extends GetxController {
       Get.offAll(Login());
     } catch (e) {
       Get.snackbar("Registration Error", e.toString(),
-          snackPosition: SnackPosition.BOTTOM);
+          duration: Duration(seconds: 2), snackPosition: SnackPosition.BOTTOM);
     }
   }
 
@@ -37,10 +37,10 @@ class RegisterController extends GetxController {
     try {
       await auth.currentUser?.sendEmailVerification();
       Get.snackbar("Notification", "Lien d'activation envoyé",
-          snackPosition: SnackPosition.BOTTOM);
+          duration: Duration(seconds: 2), snackPosition: SnackPosition.BOTTOM);
     } catch (e) {
       Get.snackbar("Registration Error", e.toString(),
-          snackPosition: SnackPosition.BOTTOM);
+          duration: Duration(seconds: 2), snackPosition: SnackPosition.BOTTOM);
     }
   }
 }
