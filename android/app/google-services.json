@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "472186938858",
+    "project_id": "test-d2580",
+    "storage_bucket": "test-d2580.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:472186938858:android:fb35130fe2728a47a73e93",
+        "android_client_info": {
+          "package_name": "com.example.learn_getx"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD0dS4O3CBYjk_B1AOAL_PfgEnVueJrypw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
