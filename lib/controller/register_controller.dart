@@ -6,6 +6,7 @@ import 'package:learn_getx/ui/login.dart';
 class RegisterController extends GetxController {
   FirebaseAuth auth = FirebaseAuth.instance;
   final firestore = FirebaseFirestore.instance;
+  var isLoading = false.obs;
 
   @override
   void onInit() {
@@ -13,6 +14,7 @@ class RegisterController extends GetxController {
   }
 
   void register(String email, String password) async {
+    isLoading.value = true;
     try {
       Map<String, dynamic> userData = {'email': email};
 
@@ -25,19 +27,23 @@ class RegisterController extends GetxController {
         print("Error adding user: $error");
       });
 
-      sendEmailVerification();
+      sendEmailVerification(email);
       Get.offAll(Login());
     } catch (e) {
       Get.snackbar("Registration Error", e.toString(),
           duration: Duration(seconds: 2), snackPosition: SnackPosition.BOTTOM);
+    } finally {
+      // Définir isLoading sur false après la tentative de connexion
+      isLoading.value = false;
     }
   }
 
-  void sendEmailVerification() async {
+  void sendEmailVerification(String email) async {
     try {
       await auth.currentUser?.sendEmailVerification();
-      Get.snackbar("Notification", "Lien d'activation envoyé",
-          duration: Duration(seconds: 2), snackPosition: SnackPosition.BOTTOM);
+      Get.snackbar("Notification",
+          "Un lien d'activation a été envoyé à $email. Veuillez cliquer dessus pour activer votre compte.",
+          duration: Duration(seconds: 5), snackPosition: SnackPosition.BOTTOM);
     } catch (e) {
       Get.snackbar("Registration Error", e.toString(),
           duration: Duration(seconds: 2), snackPosition: SnackPosition.BOTTOM);

@@ -73,23 +73,45 @@ class Register extends StatelessWidget {
                         obscureText: true,
                       ),
                       const SizedBox(height: 16.0),
-                      ElevatedButton(
-                        onPressed: () {
-                          if (_formKey.currentState!.validate()) {
-                            _formKey.currentState!.save();
-                            controller.register(
-                                emailController.text, passwordController.text);
-                          }
-                        },
-                        style: ElevatedButton.styleFrom(
-                          elevation: 0,
-                          backgroundColor: const Color(0xFF00BF6D),
-                          foregroundColor: Colors.white,
-                          minimumSize: const Size(double.infinity, 48),
-                          shape: const StadiumBorder(),
-                        ),
-                        child: const Text("S'inscrire"),
-                      ),
+                      // ElevatedButton(
+                      //   onPressed: () {
+                      //     if (_formKey.currentState!.validate()) {
+                      //       _formKey.currentState!.save();
+                      //       controller.register(
+                      //           emailController.text, passwordController.text);
+                      //     }
+                      //   },
+                      //   style: ElevatedButton.styleFrom(
+                      //     elevation: 0,
+                      //     backgroundColor: const Color(0xFF00BF6D),
+                      //     foregroundColor: Colors.white,
+                      //     minimumSize: const Size(double.infinity, 48),
+                      //     shape: const StadiumBorder(),
+                      //   ),
+                      //   child: const Text("S'inscrire"),
+                      // ),
+
+                      Obx(() {
+                        return controller.isLoading.value
+                            ? CircularProgressIndicator()
+                            : ElevatedButton(
+                                onPressed: () {
+                                  if (_formKey.currentState!.validate()) {
+                                    _formKey.currentState!.save();
+                                    controller.register(emailController.text,
+                                        passwordController.text);
+                                  }
+                                },
+                                style: ElevatedButton.styleFrom(
+                                  elevation: 0,
+                                  backgroundColor: const Color(0xFF00BF6D),
+                                  foregroundColor: Colors.white,
+                                  minimumSize: const Size(double.infinity, 48),
+                                  shape: const StadiumBorder(),
+                                ),
+                                child: const Text("S'inscrire"),
+                              );
+                      }),
                       TextButton(
                         onPressed: () {
                           Get.to(Login());
